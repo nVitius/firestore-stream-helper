@@ -1,0 +1,21 @@
+{
+  "name": "firestore-stream-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepare": "npm run build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
+    "firebase-admin": "^9.4.2"
+  },
+  "peerDependencies": {
+    "firebase-admin": ">=2"
+  }
+}
