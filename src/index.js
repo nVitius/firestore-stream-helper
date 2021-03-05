@@ -50,6 +50,21 @@ export default class FirestoreStreamHelper {
     return this
   }
 
+  abort(force = false) {
+    if (this.readable) {
+      this.readable.destroy()
+    }
+
+    if (this.writable) {
+      if (force)
+        this.writable.destroy()
+      else
+        this.writable.end()
+    }
+
+    this.reject()
+  }
+
   finish() {
     return this.completed
   }
