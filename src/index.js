@@ -1,4 +1,5 @@
 import { default as FirestoreBatch, Handlers as FirestoreBatchHandlers } from './FirestoreBatch'
+import SyncHandler from './SyncHandler'
 
 export default class FirestoreStreamHelper {
   constructor(firestore) {
@@ -25,6 +26,15 @@ export default class FirestoreStreamHelper {
     }
 
     this.writable = new FirestoreBatch(this.firestore, { limit, streamOptions })
+    this.writable.handler = handler
+
+    return this
+  }
+
+  withSyncHandler({ streamOptions, handler, mode = 'each' }) {
+    if (mode === 'each')
+      this.writable = new SyncHandler(streamOptions)
+
     this.writable.handler = handler
 
     return this
